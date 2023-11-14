@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="insign()">sign in</button>
+  <div id="show"></div>
+  <script type="module">
+
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import {githAuth, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyAxoA9R35pR7nbtQP8KbnEI1W7WIhOGl4I",
+    authDomain: "fireb-text.firebaseapp.com",
+    projectId: "fireb-text",
+    storageBucket: "fireb-text.appspot.com",
+    messagingSenderId: "233206594148",
+    appId: "1:233206594148:web:8876fb02fc0a29a7f6bd71"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const provider = new GithubAuthProvider();
+
+  const insign = () => {
+    alert("5678098")
+ 
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          show.innerHTML += ` <h1>Welcome ${user.displayName}</h1>
+      <p>Here is your Github address ${user.email}</p>
+      <img src=${user.photoURL} alt="profile pic" />`
+
+        })
+        .catch(() => {
+          console.log("error");
+        })
+    
+  }
+  window.insign = insign
+
+  
+
+  
+  </script>
+</body>
+</html>
